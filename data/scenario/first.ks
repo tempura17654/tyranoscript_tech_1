@@ -12,16 +12,16 @@
 	
 	
 	; [title] タイトルバーに表示されるテキストを変更します。
-	[title name="ティラノスクリプト｜サンプルテクニック集２"]
+	[title name="ティラノスクリプト｜サンプルテクニック集１"]
 	
 	; [call]x3 設定用サブルーチンを3つ呼びます。
 	[call target="*Sub_Layer"    ]
 	[call target="*Sub_Plugin"   ]
 	[call target="*Sub_Character"]
 	
-	[plugin name="temprider" cache="false"]
+	;[plugin name="temprider" cache="false"]
+	;[jump storage="kaisetsu/12_anim.ks"]
 	[jump storage="title.ks"]
-	[jump storage="kaisetsu/21_macro.ks"]
 	
 	
 	

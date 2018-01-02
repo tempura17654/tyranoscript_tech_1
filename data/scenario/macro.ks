@@ -338,6 +338,7 @@
 			; [image]
 			; 選択肢の背景となる色付きの四角形を表示します。
 			[image layer="0" storage="& tf.image"      x="  0" y="& tf.index * 95 +  5 " width="810" height="90"]
+				
 				; storage 属性などの値の頭についている「&」は、
 				;「後に続く文字をJavaScriptの式として評価せよ」という合図です。
 				; storage 属性の場合で言えば、後に続く「tf.image」がJavaScriptの式として評価されますので、
@@ -347,7 +348,7 @@
 			; [ptext]
 			; 文字を表示します。
 			[ptext layer="0" text="% text1"            x=" 20" y="& tf.index * 95 +  9 " bold="bold"   size="40"]
-			[ptext layer="0" text="% text2"            x=" 20" y="& tf.index * 95 + 52 "               size="24"]
+			[ptext layer="0" text="% text2"            x=" 20" y="& tf.index * 95 + 56 "               size="22"]
 				; text 属性の頭についている「%」は、
 				;「マクロに渡された同じ属性名の値を渡してね」という合図です。
 			
@@ -366,7 +367,7 @@
 			;                                                                                  !!!
 			[image layer="0" storage="&tf.image"      x="  0" y="& tf.index * 95 +  5 " width="960" height="90"]
 			[ptext layer="0" text="%text1"            x=" 20" y="& tf.index * 95 +  9 " bold="bold"   size="40"]
-			[ptext layer="0" text="%text2"            x=" 20" y="& tf.index * 95 + 52 "               size="24"]
+			[ptext layer="0" text="%text2"            x=" 20" y="& tf.index * 95 + 56 "               size="22"]
 			[clickable color="white" opacity="0"      x="  0" y="& tf.index * 95 +  5 " width="960" height="90" mouseopacity="50" storage="& 'kaisetsu/' + mp.storage" target="%target"]
 		
 		[endif]
