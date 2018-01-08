@@ -21,7 +21,8 @@
 	
 	; [layopt]
 	; メッセージレイヤーは消します。
-	[layopt layer="message" visible="false"]
+	[layopt layer="message0" visible="false"]
+	[layopt layer="message1" visible="false"]
 	[layopt layer="0" visible="true"]
 	[layopt layer="1" visible="true"]
 	[layopt layer="2" visible="true"]
@@ -44,7 +45,7 @@
 	
 	; [mask]
 	; マスクをかけて画面再構築の準備をします。
-	[mask graphic="mask_logo.png" time="800" effect="rotateInDownRight"]
+	[mask graphic="mask_logo.png" time="800" effect="fadeInUp"]
 		
 		; [destroy]
 		; これは独自マクロです(→macro.ks)。
@@ -63,7 +64,7 @@
 		; [wait]
 		; マスク画像（アイキャッチ画像）を見せたいので、ちょっと待ちます。
 		; あまり長いとストレスになりますので、ちょっとだけ。
-		[wait time="400"]
+		[wait time="600"]
 
 		; [button]
 		; ｢前ページへ｣｢次ページへ｣ボタンを表示します。
@@ -158,7 +159,7 @@
 	[list_item text1="15…プレイヤーに入力してもらう①  " text2="[edit][commit]          " storage="15_input_1.ks" shiryou="no"]
 	[list_item text1="16…プレイヤーに入力してもらう②  " text2="[button][iscript]       " storage="16_input_2.ks" shiryou="no"]
 	[list_item text1="17…ウィンドウをカスタマイズする①" text2="[position][button]      " storage="17_window_1.ks" shiryou="no"]
-	[list_item text1="18…ウィンドウをカスタマイズする②※" text2="[]                      " storage="18_window_2.ks" shiryou="no"]
+	[list_item text1="18…ウィンドウをカスタマイズする②" text2="[layopt][current]       " storage="18_window_2.ks" shiryou="no"]
 	[anim name="prev" left="-100" time="0" effect="easeOutBack"]
 	[anim name="next" left=" 660" time="0" effect="easeOutBack"]
 	[return]

@@ -162,6 +162,7 @@
 	; すべてのレイヤーの画像やテキスト、ボタンなどを破壊し、
 	; ゲーム画面を更地に戻します。
 	[macro name="destroy"]
+		; メニューボタンを隠す
 		[hidemenubutton]
 		; メッセージの削除およびフリーレイヤーの解放
 		; (フリーレイヤー＝ボタンやHTMLなどが挿入されるレイヤー)
@@ -187,7 +188,8 @@
 		;[reset_camera time="0" layer="2"]
 		;[reset_camera time="0"]
 		; メッセージウィンドウの非表示
-		[layopt layer="message" visible="false"]
+		[layopt layer="message0" visible="false"]
+		[layopt layer="message1" visible="false"]
 	[endmacro]
 	
 	[macro name="reset_all"]
@@ -211,7 +213,7 @@
 	[macro name="set_default_view"]
 		
 		; [mask]～[mask_off]　マスクしている間に、画面の破壊と再構築を行います。
-		[mask color="white" time="0"]
+		[mask color="white" time="400"]
 			
 			; [destroy] 独自マクロ。画面にあるもの、画面にある効果、すべてを破壊します。
 			[destroy]
@@ -219,15 +221,16 @@
 			; [set_message_window] 独自マクロ。メッセージウィンドウをセットしなおします。
 			[set_message_window]
 			
+			; [layopt] メッセージウィンドウを表示します。
+			[layopt layer="message0" visible="true"]
+			
 			; [bg][chara_show][wait] 解説画面用の背景、キャラを表示してから、ちょっと待機します。
 			[bg time="0" storage="room.jpg"]
 			[chara_show time="0" name="akane"]
 			[wait time="100"]
 		
-		[mask_off time="0"]
+		[mask_off time="400"]
 	
-		; [layopt] メッセージウィンドウを表示します。
-		[layopt layer="message0" visible="true"]
 		
 	[endmacro]
 	

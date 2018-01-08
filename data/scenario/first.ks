@@ -20,16 +20,8 @@
 	[call target="*Sub_Character"]
 	
 	;[plugin name="temprider" cache="false"]
-	;[jump storage="kaisetsu/12_anim.ks"]
+	;[jump storage="kaisetsu/18_window_2.ks"]
 	[jump storage="title.ks"]
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
