@@ -20,7 +20,7 @@
 	[call target="*Sub_Character"]
 	
 	;[plugin name="temprider" cache="false"]
-	;[jump storage="kaisetsu/18_window_2.ks"]
+	;[jump storage="kaisetsu/19_variable_1.ks"]
 	[jump storage="title.ks"]
 	
 	
@@ -39,21 +39,15 @@
 *Sub_Layer
 ; ----------------------------------------------------------
 	
-	; レイヤーの表示非表示などを設定するラベルです。
-	; このラベルは、[call]タグによってジャンプしてくるラベル――
-	;
-	; (このようなラベルをサブルーチンラベルと言います。
-	;  また、[call]タグによってサブルーチンラベルにジャンプすることを、
-	; 「サブルーチンを呼ぶ」とか「サブルーチンをコールする」とか言います。）
-	;
-	; ――ですので、終わり際に[return]タグを配置する必要があります。
-	; [return] に達した時点で、もとのシナリオの位置に戻ります。
-	
-	; [layopt] メッセージレイヤーを非表示にします。
-	[layopt layer="message" visible="false"]
+	; レイヤーの表示非表示などを設定するサブルーチンラベルです。
+	; [call] でここに飛んできます。
+	; そして [return] に達した時点で、[call] の位置に戻ります。
 	
 	; [hidemenubutton] メニューボタンを隠します。
 	[hidemenubutton]
+	
+	; [layopt] メッセージレイヤー0番を非表示にします。
+	[layopt layer="message0" visible="false"]
 	
 	; [layopt] 通常レイヤー0番･1番･2番を表示してあげます。
 	; 初期状態では非表示なので注意。
@@ -61,8 +55,7 @@
 	[layopt layer="1" visible="true"]
 	[layopt layer="2" visible="true"]
 	
-	; [return]
-	; [call]タグで呼ばれたところに帰ります。
+	; [return] 帰ります。
 	[return]
 	
 	
@@ -98,7 +91,7 @@
 	[chara_face name="akane"   face="happy"  storage="chara/akane/happy.png"   ]
 	[chara_face name="akane"   face="sad"    storage="chara/akane/sad.png"     ]
 	
-	; [chara_new][chara_face]x5 やまとを定義しています。
+	; [chara_new][chara_face]x4 やまとを定義しています。
 	[chara_new  name="yamato" jname="やまと" storage="chara/yamato/normal.png" ]
 	[chara_face name="yamato"  face="angry"  storage="chara/yamato/angry.png"  ]
 	[chara_face name="yamato"  face="happy"  storage="chara/yamato/happy.png"  ]

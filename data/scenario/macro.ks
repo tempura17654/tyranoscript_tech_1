@@ -12,118 +12,38 @@
 ;
 ; ＝定義しているマクロ一覧＝
 ; 
-; ┌テキスト簡易装飾マクロ
-; │├[<y]
-; │├[<r]
-; │├[<p]
-; │└[>]
-; │
-; ├発言者欄管理マクロ
-; │├[::]
-; │├[:akane:]
-; │└[:yamato:]
+; ├表情変更マクロ
+; │├あかね
+; ││├[akn/def]
+; ││├[akn/hap]
+; ││├[akn/sad]
+; ││├[akn/dok]
+; ││├[akn/ang]
+; │├やまと
+; │　├[ymt/def]
+; │　├[ymt/hap]
+; │　├[ymt/sad]
+; │　├[ymt/thh]
+; │　├[ymt/ang]
 ; │
 ; ├画面破壊/再構築マクロ
 ; │├[destroy]
+; │├[reset_all]
+; │├[set_message_window]
 ; │├[set_default_view]
-; │└[set_message_window]
 ; │
-; ├目次表示用マクロ
-; │├[index_reset]
-; │└[list_item]
-; │
-; ├乱数マクロ
-; │├[getrand]
-; │└[getrandname]
-; │
-; └その他マクロ
-; 　├[kadomaru]
-; 　├[wrap]
-; 　├[clearanimstack]
-; 　└[change_image]
-
+; ├目次表示マクロ
+; 　├[index_reset]
+; 　└[list_item]
+;
 ; ==========================================================
 	
 	
 	
-; ----------------------------------------------------------
-; テキスト装飾マクロ
-; ----------------------------------------------------------
-	
-	; [<y]
-	; 字を黄色くするだけのマクロです。y = yellow
-	[macro name="<y"]
-		[font color="yellow"]
-	[endmacro]
-	
-	
-	
-	; [<r]
-	; 字を赤くするだけのマクロです。r = red
-	[macro name="<r"]
-		[font color="0xf01070"]
-	[endmacro]
-	
-	
-	
-	; [<p]
-	; 字をピンク色にするだけのマクロです。p = pink
-	[macro name="<p"]
-		[font color="0xff44cc"]
-	[endmacro]
-	
-	
-	
-	; [>]
-	; 字をもとに戻すだけのマクロです。
-	[macro name=">"]
-		[resetfont]
-	[endmacro]
-	
-	
-	; つまり、
-	;
-	;      ああああ[<y]いいいい[>]うううう
-	;
-	; のように記述すると、「いいいい」だけが黄色くなります。
-	
-	
-	
-	
-	
 	
 ; ----------------------------------------------------------
-; 発言者欄管理マクロ
+; 表情変更用マクロ
 ; ----------------------------------------------------------
-	
-	; [:akane:]
-	; #akane の代わりに使います。
-	; 発言者欄にakaneを入れて、
-	; 発言者欄用の画像を表示します。
-	[macro name=":akane:"]
-		#akane
-		[anim name="chara_name_image" time="0" opacity="255"]
-	[endmacro]
-	
-	
-	
-	; [:yamato:]
-	; #yamato の代わりに使います。
-	[macro name=":yamato:"]
-		#yamato
-		[anim name="chara_name_image" time="0" opacity="255"]
-	[endmacro]
-	
-	
-	
-	; [::]
-	; # の代わりに使います。
-	[macro name="::"]
-		#
-		[anim name="chara_name_image" time="0" opacity="  0"]
-	[endmacro]
-	
-	
 	
 	[macro name="akn/def"]
 		[chara_ptext name="akane"]
@@ -143,6 +63,36 @@
 	[macro name="akn/dok"]
 		[chara_ptext name="akane"]
 		[chara_mod   name="akane" face="doki"]
+	[endmacro]
+	
+	[macro name="akn/ang"]
+		[chara_ptext name="akane"]
+		[chara_mod   name="akane" face="angry"]
+	[endmacro]
+	
+	[macro name="ymt/def"]
+		[chara_ptext name="yamato"]
+		[chara_mod   name="yamato" face="default"]
+	[endmacro]
+	
+	[macro name="ymt/hap"]
+		[chara_ptext name="yamato"]
+		[chara_mod   name="yamato" face="happy"]
+	[endmacro]
+	
+	[macro name="ymt/sad"]
+		[chara_ptext name="yamato"]
+		[chara_mod   name="yamato" face="sad"]
+	[endmacro]
+	
+	[macro name="ymt/thh"]
+		[chara_ptext name="yamato"]
+		[chara_mod   name="yamato" face="tohoho"]
+	[endmacro]
+	
+	[macro name="ymt/ang"]
+		[chara_ptext name="yamato"]
+		[chara_mod   name="yamato" face="angry"]
 	[endmacro]
 	
 	
@@ -182,11 +132,6 @@
 		[freeimage layer="0"    page="back"]
 		[freeimage layer="1"    page="back"]
 		[freeimage layer="2"    page="back"]
-		; カメラの解放
-		;[reset_camera time="0" layer="0"]
-		;[reset_camera time="0" layer="1"]
-		;[reset_camera time="0" layer="2"]
-		;[reset_camera time="0"]
 		; メッセージウィンドウの非表示
 		[layopt layer="message0" visible="false"]
 		[layopt layer="message1" visible="false"]
@@ -225,9 +170,9 @@
 			[layopt layer="message0" visible="true"]
 			
 			; [bg][chara_show][wait] 解説画面用の背景、キャラを表示してから、ちょっと待機します。
-			[bg time="0" storage="room.jpg"]
-			[chara_show time="0" name="akane"]
-			[wait time="100"]
+			[bg         time="  0" storage="room.jpg"]
+			[chara_show time="  0" name="akane"]
+			[wait       time="100"]
 		
 		[mask_off time="400"]
 	
@@ -380,161 +325,6 @@
 		; 選択肢番号をひとつ増やします。
 		[eval exp="tf.index = tf.index + 1"]
 		
-	[endmacro]
-	
-	
-	
-	
-	
-	
-	
-	
-	
-; ----------------------------------------------------------
-; 乱数マクロ
-; ----------------------------------------------------------
-	
-	
-	
-	
-	
-	
-	; [getrand var="XXX" min="XXX" max="XXX"]
-	; 一時変数 tf.rand に min 以上 max 以下の乱数(整数)をセットするマクロです。
-	; var には変数の名前を指定できます（var="f.a"のように）。
-	; 指定すると、tf.rand の内容をその変数にコピーします。
-	[macro name="getrand"]
-		[iscript]
-			var max = mp.max || '10'
-			var min = mp.min || '1'
-			max = Number(max)
-			min = Number(min)
-			tf.rand = min + Math.floor(Math.random() * (max - min + 1))
-			if (mp['var']) eval(mp['var'] + ' = ' + tf.rand)
-		[endscript]
-	[endmacro]
-	
-	
-	
-	; [getrandname var="XXX" name="XXX" min="XXX" max="XXX"]
-	; 文字列 name の{R}部分を「min 以上 max 以下のランダムな整数」で置き換えた文字列を生成し、
-	; 一時変数 tf.randname にセットします。
-	; var には変数の名前を指定できます（var="f.a"のように）。
-	; 指定すると、tf.randname の内容をその変数にコピーします。
-	[macro name="getrandname"]
-		[iscript]
-			var name  = mp.name || '*Label{R}'
-			var max   = mp.max  || '10'
-			var min   = mp.min  || '1'
-			max = Number(max)
-			min = Number(min)
-			var rand    = min + Math.floor(Math.random() * (max - min + 1))
-			tf.randname = name.replace('{R}', rand)
-			if (mp['var']) eval(mp['var'] + ' = "' + tf.randname + '"')
-		[endscript]
-	[endmacro]
-	
-	
-	
-	
-	
-; ----------------------------------------------------------
-; その他マクロ
-; ----------------------------------------------------------
-	
-	
-	
-	; [kadomaru name="XXX" radius="XXX"]
-	; name属性で指定した要素の角を丸く削るマクロです。
-	; その半径をradius属性で指定します。
-	; name属性はコンマ区切りで複数指定可能。
-	[macro name="kadomaru"]
-		[iscript]
-			var name   = mp.name   || ''
-			var radius = mp.radius || '5px'
-			if (radius.indexOf('px') < 0 && radius.indexOf('%') < 0) radius = radius + 'px'
-			var array    = name.split(',')
-			var j_target = $()
-			for (var i = 0; i < array.length; i++) j_target = j_target.add('.' + array[i])
-			j_target.css('border-radius', radius)
-		[endscript]
-	[endmacro]
-	
-	
-	
-	; [wrap wrap_name="XXX" name="XXX" layer="XXX" page="XXX" left="XXX" top="XXX" width="XXX" height="XXX"]
-	; name属性にカンマ区切りで指定した画像群をひとつのラップで包みます。
-	; layer, left, top, width, height属性も併せて指定する必要があります。
-	; ラップの名前はwrap_name属性で指定します。
-	[macro name="wrap"]
-		[iscript]
-			
-			var wrap_name = mp.wrap_name || ''
-			var name      = mp.name      || ''
-			var layer     = mp.layer     || '0'
-			var page      = mp.page      || 'fore'
-			var overflow  = mp.overflow  || ''
-			var zindex    = mp.zindex    || ''
-			var x         = mp.x         || '0'
-			var y         = mp.y         || '0'
-			var w         = mp.width     || TYRANO.kag.config.scWidth
-			var h         = mp.height    || TYRANO.kag.config.scHeight
-			
-			var j_wrap     = $('<div />')
-			$.setName(j_wrap, wrap_name)
-			j_wrap.css('position', 'absolute')
-			if (overflow != '') j_wrap.css('overflow', overflow)
-			if (zindex   != '') j_wrap.css('z-index', zindex)
-			
-			var j_target  = $()
-	        var array     = name.split(',')
-			for (var i = 0; i < array.length; i++) j_target = j_target.add('.' + array[i])
-			var j_layer = TYRANO.kag.layer.getLayer(layer, page)
-			if (layer == 'fix' || layer == 'fixlayer')j_layer = $('#tyrano_base').find('.fixlayer')
-			j_target = j_layer.find(j_target)
-			
-			var ok = { x1: x, y1: y, w: w, h: h }
-			
-			j_wrap.css({
-				'left': ok.x1 + 'px',
-				'top': ok.y1 + 'px',
-				'width': ok.w + 'px',
-				'height': ok.h + 'px'
-			})
-			
-			j_target.css({
-				'left': '-=' + ok.x1 + 'px',
-				'top': '-=' + ok.y1 + 'px'
-			})
-			
-			j_target.wrapAll(j_wrap)
-			
-		[endscript]
-	[endmacro]
-	
-	
-	
-	; [change_image name="XXX" storage="XXX"]
-	; name属性の[image]オブジェクトのstorageを即座に変更します。
-	; time指定はムリ。
-	[macro name="change_image"]
-		[iscript]
-			var name     = mp.name    || ''
-			var storage  = mp.storage || ''
-			var array    = name.split(',')
-			var j_target = $()
-			for (var i = 0; i < array.length; i++) j_target = j_target.add('.' + array[i])
-			j_target.attr("src", storage)
-		[endscript]
-	[endmacro]
-	
-	
-	
-	
-	; [clearanimstack]
-	; アニメーションスタックをクリアします。
-	[macro name="clearanimstack"]
-		[eval exp="TYRANO.kag.tmp.num_anim = 0"]
 	[endmacro]
 	
 	
