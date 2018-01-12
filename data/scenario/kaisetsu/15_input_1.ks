@@ -161,15 +161,12 @@
 		
 		[macro name="花子"]
 			
-			[font color="0xddffdd"]
-			
 			[if exp="f.name_type == 0"]
 				[emb exp="f.player_fname"]
 			[else]
 				[emb exp="f.player_name"]
 			[endif]
 			
-			[resetfont]
 		[endmacro]
 		
 		[akn/hap]

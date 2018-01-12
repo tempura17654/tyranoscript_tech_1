@@ -171,7 +171,7 @@
 			
 			; [bg][chara_show][wait] 解説画面用の背景、キャラを表示してから、ちょっと待機します。
 			[bg         time="  0" storage="room.jpg"]
-			[chara_show time="  0" name="akane"]
+			[chara_show time="  0" name="akane" face="default"]
 			[wait       time="100"]
 		
 		[mask_off time="400"]
