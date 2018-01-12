@@ -139,7 +139,7 @@
 	[list_item text1="08…キャラクターオブジェクトを出す" text2="[chara_new][chara_show][chara_mod][chara_config]他" storage="08_character.ks " shiryou="no"]
 	[list_item text1="09…画像ボタンオブジェクトを出す  " text2="[button]                                          " storage="09_button.ks    " shiryou="no"]
 	[list_item text1="10…固定ボタンオブジェクトを出す  " text2="[button&ensp;fix=true]                            " storage="10_fixbutton.ks " shiryou="no"]
-	[list_item text1="11…文字ボタンオブジェクトを出す  " text2="[glink]                                           " storage="11_glink.ks     " shiryou="no"]
+	[list_item text1="11…文字ボタンオブジェクトを出す  " text2="[glink][loadcss]                                  " storage="11_glink.ks     " shiryou="no"]
 	[list_item text1="12…オブジェクトを動かす！        " text2="[anim][kanim][chara_move][quake][keyframe]他      " storage="12_anim.ks      " shiryou="no"]
 	[anim name="prev" left="-100" time="0" effect="easeOutBack"]
 	[anim name="next" left=" 660" time="0" effect="easeOutBack"]
@@ -154,12 +154,12 @@
 	; 選択肢表示サブルーチン３ページ目。
 	
 	[index_reset]
-	[list_item text1="13…クリッカブルマップを出す      " text2="[clickable]             " storage="13_clickable.ks   " shiryou="no"]
-	[list_item text1="14…選択肢の見せ方いろいろ！※      " text2="[]                      " storage="14_select.ks    " shiryou="no"]
-	[list_item text1="15…プレイヤーに入力してもらう①  " text2="[edit][commit]          " storage="15_input_1.ks" shiryou="no"]
-	[list_item text1="16…プレイヤーに入力してもらう②  " text2="[button][iscript]       " storage="16_input_2.ks" shiryou="no"]
-	[list_item text1="17…ウィンドウをカスタマイズする①" text2="[position][button]      " storage="17_window_1.ks" shiryou="no"]
-	[list_item text1="18…ウィンドウをカスタマイズする②" text2="[layopt][current]       " storage="18_window_2.ks" shiryou="no"]
+	[list_item text1="13…クリッカブルマップを出す      " text2="[clickable]             " storage="13_clickable.ks" shiryou="no"]
+	[list_item text1="14…選択肢の見せ方いろいろ！※    " text2="[]                      " storage="14_select.ks"    shiryou="no"]
+	[list_item text1="15…プレイヤーに入力してもらう①  " text2="[edit][commit]          " storage="15_input_1.ks"   shiryou="no"]
+	[list_item text1="16…プレイヤーに入力してもらう②  " text2="[button][iscript]       " storage="16_input_2.ks"   shiryou="no"]
+	[list_item text1="17…ウィンドウをカスタマイズする①" text2="[position][button]      " storage="17_window_1.ks"  shiryou="no"]
+	[list_item text1="18…ウィンドウをカスタマイズする②" text2="[layopt][current]       " storage="18_window_2.ks"  shiryou="no"]
 	[anim name="prev" left="-100" time="0" effect="easeOutBack"]
 	[anim name="next" left=" 660" time="0" effect="easeOutBack"]
 	[return]
@@ -173,13 +173,13 @@
 	; 選択肢表示サブルーチン４ページ目。
 
 	[index_reset]
-	[list_item text1="19…変数の話①&ensp;変数とはなにか※     " text2="[]                      " storage="19_variable_1.ks" shiryou="no"]
-	[list_item text1="20…変数の話②&ensp;フラグや好感度など※ " text2="[]                      " storage="20_variable_2.ks" shiryou="no"]
-	[list_item text1="21…サブルーチンとマクロの話           " text2="[call][return][macro]   " storage="21_macro.ks" shiryou="no"]
-	[list_item text1="22…フォントの話                       " text2="[font][deffont]         " storage="22_font.ks" shiryou="no"]
-	[list_item text1="23…ミニチュアゲーム①&ensp;脱出ゲーム "                                  storage="23_escape.ks" shiryou="no"]
+	[list_item text1="19…変数の話①&ensp;変数とはなにか               " text2="[eval][iscript]                " storage="19_variable_1.ks" shiryou="yes"]
+	[list_item text1="20…変数の話②&ensp;フラグや好感度でシナリオ分岐 " text2="[eval][iscript][if]            " storage="20_variable_2.ks" shiryou="no"]
+	[list_item text1="21…サブルーチンとマクロの話                     " text2="[call][return][macro][endmacro]" storage="21_macro.ks"      shiryou="no"]
+	[list_item text1="22…フォントの話                                 " text2="[loadcss][font][deffont]       " storage="22_font.ks"       shiryou="no"]
+	[list_item text1="23…脱出ゲーム                                   "                                         storage="23_escape.ks"     shiryou="no"]
 	[anim name="prev" left="-100" time="0" effect="easeOutBack"]
-	[anim name="next" left=" 660" time="0" effect="easeOutBack"]
+	[anim name="next" left=" 960" time="0" effect="easeOutBack"]
 	[return]
 
 
@@ -212,11 +212,11 @@
 	;
 	; これ以上ページはないのに次に進もうとしたらバグりますから、
 	; [ignore]で対策をしているということですね。
-	[ignore exp="f.current_page_index >= 5"]
+	[ignore exp="f.current_page_index >= 4"]
 		
 		; [eval]
 		; 現在のページ番号を１増加させ、現在のページラベルを更新します。
-		[eval exp="f.current_page_index++"]
+		[eval exp="f.current_page_index += 1"]
 		[eval exp="f.current_page_label = '*Sub_Page' + f.current_page_index"]
 		
 		; [cm]
@@ -286,26 +286,3 @@
 		[destroy]
 		[mask_off time="0"]
 		[jump storage="title.ks"]
-			'01_text.ks',
-			'02_decotext.ks',
-			'03_layer.ks',
-			'04_background.ks',
-			'05_image.ks',
-			'06_messagewindow_1.ks',
-			'07_ptext.ks',
-			'08_mtext.ks',
-			'09_button.ks',
-			'10_fixbutton.ks',
-			'11_character.ks',
-			'12_messagewindow_2.ks',
-			'13_anim.ks',
-			'14_select.ks',
-			'15_input_1.ks',
-			'16_input_2.ks',
-			'17_clickable_1.ks',
-			'18_clickable_2.ks',
-			'19_variable_1.ks',
-			'20_variable_2.ks',
-			'21_macro.ks',
-			'22_subroutine.ks',
-			'23_font.ks'
