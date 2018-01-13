@@ -1,6 +1,9 @@
 	; [set_default_view] 解説画面を作成する独自マクロです。(詳細は「macro.ks」をご参照ください)
 	[set_default_view]
 	
+	; [akn/def] 独自マクロ。キャラ名欄に「あかね」と入れつつ、あかねの表情を変えます。定義は「macro.ks」で。
+	[akn/def]
+	
 	
 	
 ; == 07_mtext.ks ===========================================
@@ -17,110 +20,118 @@
 ;-----------------------------------------------------------
 *Part1
 ;-----------------------------------------------------------
-	
-	; ●
-	; ●演出文字オブジェクトをとりあえず出してみる。
-	; ●
-	
-		; [akn/def] 独自マクロ。あかねの表情を変えます。似た名前のタグも同様に独自マクロです。
-		[akn/def]
+		
+		; ●
+		; ●演出文字オブジェクトをとりあえず出してみる。
+		; ●
+		
 		この節では「演出文字オブジェクト」について見てみよう。[p]
 		これは派手な登場＆退場アニメーションの付いた文字を出すもので、実際にやってみると……。[p]
-	
+		
 	; [mtext]x2 演出オブジェクトを出してみます。
 	; 1個目が完全に消えてから2個目が出ます。
 	[mtext text="ざわ･･" layer="0" x="200" y="100" size="70" in_effect="wobble" time="0" color="0x000000" edge="0xffffff"]
 	[mtext text="ざわ･･" layer="0" x="600" y="300" size="70" in_effect="wobble" time="0" color="0x000000" edge="0xffffff"]
-	
+		
 		と、こんな感じです。[p]
-	
-	
-	
+		
+		
+		
 ;-----------------------------------------------------------
 *Part2
 ;-----------------------------------------------------------
-	
-	; ●
-	; ●演出の完了を待たずに次のスクリプトに進む。
-	; ●
-	
+		
+		; ●
+		; ●演出の完了を待たずに次のスクリプトに進む。
+		; ●
+		
 		同時に複数の演出文字を出すこともできる。[p]
-	
+		
 	; [mtext]x4 waitパラメータにfalseを指定することで、消えるのを待たずに次のスクリプトへ進ませることができます。
 	[mtext text="ざわ･･" layer="0" x="200" y="100" size="70" in_effect="wobble" time="0" color="0x000000" edge="0xffffff" wait="false"]
 	[mtext text="ざわ･･" layer="0" x="460" y="300" size="70" in_effect="wobble" time="0" color="0x000000" edge="0xffffff" wait="false"]
 	[mtext text="ざわ･･" layer="0" x="560" y="100" size="70" in_effect="wobble" time="0" color="0x000000" edge="0xffffff" wait="false"]
 	[mtext text="ざわ･･" layer="0" x="140" y="300" size="70" in_effect="wobble" time="0" color="0x000000" edge="0xffffff"]
-	
-	
-	
+		
+		
+		
 ;-----------------------------------------------------------
 *Part3
 ;-----------------------------------------------------------
-	
-	; ●
-	; ●フェードアウトさせずにレイヤーに残す。
-	; ●
-	
+		
+		; ●
+		; ●フェードアウトさせずにレイヤーに残す。
+		; ●
+		
 		さて、演出文字は基本的には勝手に消えるんだけど――[p]
 		退場アニメーションをなくして、演出文字をレイヤー上に残しておくこともできるよ。[p]
-	
+		
 	; [mtext] fadeoutパラメータにfalseを指定することで、退場を行わない。
 	; また、nameパラメータに適当な文字を指定しておくことで、のちに個別操作ができる。
 	[mtext text="教室&emsp;午前7時30分" layer="0" x="5" y="5" size="40" in_effect="fadeInRightBig" time="0" color="0xc0006f" edge="0xffffff" fadeout="false" name="mtext"]
 		
-		[akn/hap]ね。[p]
-		[akn/def]背景の切り替えと一緒に演出文字を出してみたりして。[p]
-	
+		[akn/hap]
+		ね。[p][akn/def]
+		背景の切り替えと一緒に演出文字を出してみたりして。[p]
+		
 	; [free] 先ほどの演出文字オブジェクトを指定して解放する。
 	[free layer="0" name="mtext"]
-	
+		
 	; [mtext][bg] 演出文字オブジェクトと背景の切り替えを同時に行う。
 	[mtext text="廊下&emsp;午前7時45分" layer="0" x="5" y="5" size="40" in_effect="fadeInRightBig" time="0" color="0xc0006f" edge="0xffffff" fadeout="false" name="mtext" wait="false"]
 	[bg storage="rouka.jpg"]
 		
 		[akn/hap]
 		探索要素があるアドベンチャーゲームでは、こういうのがあると親切かもしれないね![p]
-		
-	[free layer="0" name="mtext"]
+		[free layer="0" name="mtext"]
 	
 	
 	
 ;-----------------------------------------------------------
 *Part4
 ;-----------------------------------------------------------
-	
-	; ●
-	; ●メッセージレイヤーに出してみる。
-	; ●
+		
+		; ●
+		; ●メッセージレイヤーに出してみる。
+		; ●
 		
 		[akn/def]工夫をすれば、メッセージウィンドウに演出文字を出すこともできるよ。[p]
 		やってみようか。[p][akn/dok]
-	
+		
+	; [glyph] クリック待ち画像の場所を直接指定します。
 	[glyph fix="true" left="850" top="575"]
-	[mtext layer="message0" x="35" y="505" text="うわああぁぁぁああ!!!" size="80" edge="0x000000" fadeout="false" in_effect="bounceIn" name="mtext"]
-	[l][free name="mtext" layer="message0"]
 	
+	; [mtext] layer=message0に着目しよう。メッセージレイヤー0番を出力対象にしています。
+	[mtext layer="message0" x="35" y="505" text="うわああぁぁぁああ!!!" size="80" edge="0x000000" fadeout="false" in_effect="bounceIn" name="mtext"]
+		
+		[l]
+		[free name="mtext" layer="message0"]
+		
+	; [glyph][mtext] 同じことをします。
 	[glyph fix="true" left="920" top="575"]
 	[mtext layer="message0" x="35" y="505" text="バケモノが出たぞぉお!!!" size="80" edge="0x000000" fadeout="false" in_effect="bounceIn" name="mtext"]
-	[l][free name="mtext" layer="message0"]
-	
+		
+		[l]
+		[free name="mtext" layer="message0"]
+		
+	; [glyph] クリック待ち画像の場所を元に戻します。
 	[glyph fix="false"]
-	
-		[akn/def]……なんてね。[p]
-	
-	
-	
+		
+		[akn/def]
+		……なんてね。[p]
+		
+		
+		
 ;-----------------------------------------------------------
 *Part5
 ;-----------------------------------------------------------
-	
-	; ●
-	; ●画面を暗転させて文字を強調してみる。
-	; ●
-	
+		
+		; ●
+		; ●画面を暗転させて文字を強調してみる。
+		; ●
+		
 		画面を暗転させて演出文字を強調するのもよし。[p]
-	
+		
 	; [layopt]x2 メッセージレイヤー0番とフィックスレイヤーを非表示に。
 	[layopt layer=message0 visible=false]
 	[layopt layer=fix      visible=false]
@@ -151,11 +162,11 @@
 ;-----------------------------------------------------------
 *Part6
 ;-----------------------------------------------------------
-	
-	; ●
-	; ●エンディングを作ってみる。[p]
-	; ●
-	
+		
+		; ●
+		; ●エンディングを作ってみる。[p]
+		; ●
+		
 		エンディングのスタッフロールもこれで作ることができるよ。[p]
 	
 	; [layopt]x2 メッセージレイヤー0番とフィックスレイヤーを非表示にします。
@@ -189,8 +200,8 @@
 	[layopt layer=message0 visible=true]
 	[layopt layer=fix      visible=true]
 		
-		…………。[p]
-		[akn/hap]…………ね!![p]
+		…………。[p][akn/hap]
+		…………ね!![p]
 		以上、演出文字オブジェクトの解説でした。[p]
 		資料集として、演出方法などの各種パラメータの一覧を用意しているので、[p]
 		興味がある方はそちらも見てみてくださいー!![p]

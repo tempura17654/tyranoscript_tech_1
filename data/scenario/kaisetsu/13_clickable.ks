@@ -1,6 +1,9 @@
 	; [set_default_view] 解説画面を作成する独自マクロです。(詳細は「macro.ks」をご参照ください)
 	[set_default_view]
 	
+	; [akn/def] 独自マクロ。キャラ名欄に「あかね」と入れつつ、あかねの表情を変えます。定義は「macro.ks」で。
+	[akn/def]
+	
 	
 	
 ; == 13_clickable.ks =======================================
@@ -17,38 +20,35 @@
 ;-----------------------------------------------------------
 *Start
 ;-----------------------------------------------------------
-	
-		[akn/def]
+		
 		［clickable］というタグを知ってる？[p]
 		これを使えば、クリッカブルな領域――「クリック可能な長方形の領域」を簡単に作れるよ。[p]
-		その領域をクリックすると特定のラベルに飛ぶ、という仕掛けが作れる。[p]
-	
-	
-	
+		その領域をクリックすると特定のラベルに飛ぶ、という仕掛けが作れる。[p][akn/hap]
+		
+		
+		
 ;-----------------------------------------------------------
 *Part1
 ;-----------------------------------------------------------
-	
-		[akn/hap]
-		さっそく使ってみるね。[p]
-		[akn/def]
+		
+		
+		さっそく使ってみるね。[p][akn/def]
 		私の顔にクリッカブルマップを貼り付けたので、クリックしてみて。
-	
-	; [clickable]
+		
+	; [clickable] クリックすると*Part2に飛ばす領域を作成します。
 	[clickable x="373" y="56" width="250" height="233" target="*Part2" opacity="0" mouseopacity="50" color="0xffffff"]
-	
-	; [s]
+		
+	; [s] ゲームを停止。
 	[s]
-	
-	
-	
+		
+		
+		
 ;-----------------------------------------------------------
 *Part2
 ;-----------------------------------------------------------
-	
+		
 		[akn/hap]
-		わっ! クリックしてくれたねっ!![p]
-		[akn/def]
+		わっ! クリックしてくれたねっ!![p][akn/def]
 		このクリッカブル領域は、いくつでも配置できるし……。[p]
 		枠のデザインや透明度なんかも、けっこう自由が利くんだよ～。[p]
 		いろいろ見せてあげるね。[p]
@@ -59,15 +59,15 @@
 	[clickable x="530" y="141" width=" 56" height=" 55" target="*Pos_2" opacity="128" mouseopacity="255" border="5px:outset:white" color="rgba(0,0,0,0)"]
 	[clickable x="431" y="303" width="101" height=" 96" target="*Pos_3" opacity=" 64" mouseopacity="128" border="5px:groove:white" color="lightblue    "]
 	[clickable x="374" y=" 48" width="123" height="103" target="*Pos_4" opacity=" 64" mouseopacity="128" border="1px:solid :black" color="pink         "]
-	
+		
 		; ※ 余談 ※ 
 		; borderパラメータには、｢CSS｣でいうところのborderプロパティに相当する内容が指定できます。
 		; (←その際、半角スペースを「:」に置き換える必要があります。)
 		; ｢CSS border｣などで調べるとよいでしょう。
-	
+		
 	; [s] ゲームを停止します。
 	[s]
-	
+		
 	; 以下、情報ラベル群。
 	; いずれも簡単な文章を2～3文読んだ後「*Part3」ラベルにジャンプします。
 	
@@ -102,10 +102,8 @@
 *Part3
 ;-----------------------------------------------------------
 	
-		[akn/dok]
 		……ふむ。[p]
 		このクリッカブルマップを使えば、いろんなことができるね。[p]
-		[akn/def]
 		たとえば、プレイヤーに背景を調べてもらう。[p]
 		そう、脱出ゲームや推理アドベンチャーゲームでよく見るやつ。[p]
 		実際にやってみるので、背景を思う存分調べてみてください!![p]
@@ -124,15 +122,16 @@
 	[chara_hide_all]
 	
 	; [macro]～[endmacro]x2
-	; マクロ [sm] を定義します。(show messageの略)
+	; メッセージレイヤー0番を表示するだけのマクロ [sm] を定義します。(show messageの略のつもり)
 	[macro name="sm"]
-		[layopt layer="message0" visible="true"]
+	  [layopt layer="message0" visible="true"]
 	[endmacro]
 	
-	; マクロ [jc] を定義します。(jump clickableの略)
+	; *Set_Clickable_Mapにジャンプするだけのマクロ [jc] を定義します。(jump clickableの略のつもり)
 	[macro name="jc"]
-		[clearstack]
-		[jump target="*Set_Clickable_Map"]
+	  ; [clearstack] スタックを廃棄します。
+	  [clearstack]
+	  [jump target="*Set_Clickable_Map"]
 	[endmacro]
 	
 	
@@ -171,7 +170,7 @@
 	[clickable 17 机         x="  4" y="426" width="943" height="203" target="*Pos_17" opacity="0" mouseopacity="50" border="1px:dashed:black" color="0xffffff"]
 	[clickable 18 スイッチ   x="739" y="266" width=" 28" height=" 48" target="*Pos_18" opacity="0" mouseopacity="50" border="1px:dashed:black" color="0xffffff"]
 	
-	; [s] ゲームを停止します。クリッカブルマップを貼ったあとは必ず停止させます。
+	; [s] ゲームを停止します。
 	[s]
 	
 	; ●
@@ -302,26 +301,24 @@
 		電気を点けるスイッチのようだ。[p]
 		いまはオフになっている。[p]
 		[jc]
-	
-	
-	
+		
+		
+		
 ;-----------------------------------------------------------
 *Part4
 ;-----------------------------------------------------------
-	
-	[cm]
-	[position frame="window0/_frame.png"]
-	[sm]
-	[chara_show name="akane"]
-	
+		
+		[cm]
+		[position frame="window0/_frame.png"]
+		[sm]
+		[chara_show name="akane"]
 		もういいかな？[p]
-	
-	[chara_mod name="akane" face="happy"]
-		
+		[chara_mod name="akane" face="happy"]
 		面白いタグでしょー!![p]
+		[jump storage="select.ks"]
 		
-	[jump storage="select.ks"]
-	
+		
+		
 ;-----------------------------------------------------------
 *End
 ;-----------------------------------------------------------
