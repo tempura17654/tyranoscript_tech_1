@@ -141,6 +141,8 @@
 		[destroy]
 		[showmenubutton]
 		[position width="928" height="608" left="16" top="16" color="0x000000" opacity="128" margint="8" marginr="8" marginb="8" marginl="8" frame="none"]
+		[deffont size="24" face="メイリオ"]
+		[resetfont]
 		[free name="chara_name_area" layer="message0"]
 		[layopt layer="base" visible="true"]
 		[layopt layer="0" visible="false"]

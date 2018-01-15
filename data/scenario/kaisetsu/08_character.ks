@@ -46,12 +46,17 @@
 		それでは……。[p]
 		キャラクター関連のタグを豊富に使った「寸劇」を見てもらおうかな。[p]
 		この「寸劇」では、キャラクター関係のタグ以外のタグはほとんど使ってないよ。[p]
-		また、キャラクターがしゃべる度に明るさが変わったりキャラクターが動いたりするけれど、[p]
-		そういうのは全部自動です。システムが勝手にやってくれます。[p]
 		では、どうぞ。[p]
 		
 	; [chara_config] 強調表現を「ブライトネス」指定、表情の記憶機能を「有効」、表情切り替え時間を「０」に。
 	[chara_config talk_focus="brightness" memory="true" time="0"]
+	
+	; [chara_new][chara_face]x4 やまとを定義します。
+	[chara_new  name="yamato" jname="やまと" storage="chara/yamato/normal.png" ]
+	[chara_face name="yamato"  face="angry"  storage="chara/yamato/angry.png"  ]
+	[chara_face name="yamato"  face="happy"  storage="chara/yamato/happy.png"  ]
+	[chara_face name="yamato"  face="sad"    storage="chara/yamato/sad.png"    ]
+	[chara_face name="yamato"  face="tohoho" storage="chara/yamato/tohoho.png" ]
 	
 	; [chara_new][chara_face]x2 マスコットの怪獣キャラクターを定義します。最初の名前は「？？？」。
 	[chara_new   name="tyrano" jname="？？？" storage="chara/mascot_1/normal.png" ]
@@ -65,7 +70,7 @@
 	#tyrano
 		がおーーー!![p]
 		
-	; #akane:doki ← これは[chara_ptext name=akane][chara_mod name=akane face=doki]と同義。特殊な書き方です。
+	; #akane:doki ← これは[chara_ptext name=akane face=doki]と同義。特殊な書き方です。
 	#akane:doki
 		な、なになに？　あなたはだれ？[p]
 		

@@ -19,8 +19,9 @@
 	[call target="*Sub_Plugin"   ]
 	[call target="*Sub_Character"]
 	
-	;[plugin name="temprider" cache="false"]
+	[plugin name="temprider" cache="false"]
 	;[jump storage="kaisetsu/19_variable_1.ks"]
+	[jump storage="shiryou/08_character.ks"]
 	[jump storage="title.ks"]
 	
 	
@@ -85,18 +86,11 @@
 	; キャラクターの定義を行うサブルーチンラベルです。
 	
 	; [chara_new][chara_face]x4 あかねを定義しています。
-	[chara_new  name="akane"  jname="あかね" storage="./chara/akane/normal.png"]
+	[chara_new  name="akane"  jname="あかね" storage="chara/akane/normal.png"  ]
 	[chara_face name="akane"   face="angry"  storage="chara/akane/angry.png"   ]
 	[chara_face name="akane"   face="doki"   storage="chara/akane/doki.png"    ]
 	[chara_face name="akane"   face="happy"  storage="chara/akane/happy.png"   ]
 	[chara_face name="akane"   face="sad"    storage="chara/akane/sad.png"     ]
-	
-	; [chara_new][chara_face]x4 やまとを定義しています。
-	[chara_new  name="yamato" jname="やまと" storage="chara/yamato/normal.png" ]
-	[chara_face name="yamato"  face="angry"  storage="chara/yamato/angry.png"  ]
-	[chara_face name="yamato"  face="happy"  storage="chara/yamato/happy.png"  ]
-	[chara_face name="yamato"  face="sad"    storage="chara/yamato/sad.png"    ]
-	[chara_face name="yamato"  face="tohoho" storage="chara/yamato/tohoho.png" ]
 	
 	; [return] 帰ります。
 	[return]
