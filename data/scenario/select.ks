@@ -136,7 +136,7 @@
 	
 	[index_reset]
 	[list_item text1="07…演出文字オブジェクトを出す    " text2="[mtext]                                           " storage="07_mtext.ks     " shiryou="yes"]
-	[list_item text1="08…キャラクターオブジェクトを出す" text2="[chara_new][chara_show][chara_mod][chara_config]他" storage="08_character.ks " shiryou="no"]
+	[list_item text1="08…キャラクターオブジェクトを出す" text2="[chara_new][chara_show][chara_mod][chara_config]他" storage="08_character.ks " shiryou="yes"]
 	[list_item text1="09…画像ボタンオブジェクトを出す  " text2="[button]                                          " storage="09_button.ks    " shiryou="no"]
 	[list_item text1="10…固定ボタンオブジェクトを出す  " text2="[button&ensp;fix=true]                            " storage="10_fixbutton.ks " shiryou="no"]
 	[list_item text1="11…文字ボタンオブジェクトを出す  " text2="[glink][loadcss]                                  " storage="11_glink.ks     " shiryou="no"]
@@ -155,7 +155,7 @@
 	
 	[index_reset]
 	[list_item text1="13…クリッカブルマップを出す      " text2="[clickable]             " storage="13_clickable.ks" shiryou="no"]
-	[list_item text1="14…選択肢の見せ方いろいろ！※    " text2="[]                      " storage="14_select.ks"    shiryou="no"]
+	[list_item text1="14…選択肢の見せ方いろいろ！　    " text2="[]                      " storage="14_select.ks"    shiryou="no"]
 	[list_item text1="15…プレイヤーに入力してもらう①  " text2="[edit][commit]          " storage="15_input_1.ks"   shiryou="no"]
 	[list_item text1="16…プレイヤーに入力してもらう②  " text2="[button][iscript]       " storage="16_input_2.ks"   shiryou="no"]
 	[list_item text1="17…ウィンドウをカスタマイズする①" text2="[position][button]      " storage="17_window_1.ks"  shiryou="no"]
@@ -175,7 +175,7 @@
 	[index_reset]
 	[list_item text1="19…変数の話①&ensp;変数とはなにか               " text2="[eval][iscript]                " storage="19_variable_1.ks" shiryou="yes"]
 	[list_item text1="20…変数の話②&ensp;フラグや好感度でシナリオ分岐 " text2="[eval][iscript][if]            " storage="20_variable_2.ks" shiryou="no"]
-	[list_item text1="21…サブルーチンとマクロの話                     " text2="[call][return][macro][endmacro]" storage="21_macro.ks"      shiryou="no"]
+	[list_item text1="21…サブルーチンとマクロの話                     " text2="[call][return][macro][endmacro]" storage="21_macro.ks"      shiryou="yes"]
 	[list_item text1="22…フォントの話                                 " text2="[loadcss][font][deffont]       " storage="22_font.ks"       shiryou="no"]
 	[list_item text1="23…脱出ゲーム                                   "                                         storage="23_escape.ks"     shiryou="no"]
 	[anim name="prev" left="-100" time="0" effect="easeOutBack"]

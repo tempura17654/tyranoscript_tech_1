@@ -314,19 +314,30 @@
 		
 		[er]wait=falseを指定することで、複数のキャラクターを「同時に」出したり消したりできる。[l]
 		
+		
 	[chara_show name=akane wait=false]
 	[chara_show name=yamato wait=false]
-	[chara_show name=tyrano wait=false]
-		
-		[l]
+	[chara_show name=tyrano]
 		
 		
+		[er]ただしその場合、自動位置調整アニメーションが連続して行われる。これを回避するには工夫が必要。[l]
+		[chara_hide_all time=0]
+		[er]位置を直接指定することで、自動配置をさせない例。[l]
+		
+		
+	[chara_show name=akane wait=false left=520 top=40]
+	[chara_show name=yamato wait=false left=200 top=0]
+	[chara_show name=tyrano           left=90 top=200]
 		
 		
 		
 		
 		
 		
+		
+		
+		
+		[chara_hide_all time=1000]
 		[er]～キャラクター関係のコンフィグを変更する～[l]
 		[er]［chara_config］…キャラクター関係のコンフィグを変更する。[l]
 		
@@ -336,8 +347,8 @@
 	[chara_config pos_mode=false]
 		
 		
-		[chara_show name=akane]
 		[chara_show name=yamato]
+		[chara_show name=akane]
 		[chara_hide_all]
 		[r ]……有効に戻す。[l]
 		
@@ -351,8 +362,8 @@
 	[chara_config pos_change_time=100]
 		
 		
-		[chara_show name=akane]
 		[chara_show name=yamato]
+		[chara_show name=akane]
 		[chara_show name=tyrano]
 		[er]表情の変更（［chara_mod］タグ使用）時にかける時間のデフォルト値を設定できる。[l]
 		
@@ -375,7 +386,7 @@
 		
 		[chara_hide name=akane]
 		[chara_show name=akane]
-		[r ]……無効に戻す。
+		[r ]……無効に戻す。[l]
 		
 		
 	[chara_config memory=false]
@@ -384,10 +395,10 @@
 		[chara_hide name=akane]
 		[chara_show name=akane]
 		[er]発言しているキャラクターの自動強調機能を有効にできる。（もともとは無効）[l]
-		[r ]「ぼかし」に差をつけて強調する例。「ぼかしの強さ」も指定可能。[l]
+		[er]「ぼかし」に差をつけて強調する例。「ぼかしの強さ」も指定可能。[l]
 		
 		
-	[chara_config talk_focus=blur blur_value=1]
+	[chara_config talk_focus=blur blur_value=2]
 		
 		
 		#akane
@@ -400,7 +411,7 @@
 		[er]「輝度」に差をつけて強調する例。その「輝度」も指定可能。[l]
 		
 		
-	[chara_config talk_focus=brightness brightness_value=80]
+	[chara_config talk_focus=brightness brightness_value=60]
 		
 		
 		#akane
@@ -451,9 +462,7 @@
 		[er]マスコットがしゃべる。[l]
 		#
 		[chara_hide name=tyrano pos_mode=false]
-		[chara_hide name=yamato pos_mode=false]
-		[chara_hide name=akane pos_mode=false]
-[s]		
-	[chara_config ptext="chara_name_area" pos_mode="true" time="600" memory="false" anim="true" effect="easeInQuad" pos_change_time="600" ]
-		
-	[jump storage="select.ks"]
+		[chara_hide name=yamato]
+		#akane:happy
+		[er]以上、資料集でした。[l]
+		[jump storage="select.ks"]

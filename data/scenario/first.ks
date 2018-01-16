@@ -19,9 +19,8 @@
 	[call target="*Sub_Plugin"   ]
 	[call target="*Sub_Character"]
 	
-	[plugin name="temprider" cache="false"]
-	;[jump storage="kaisetsu/19_variable_1.ks"]
-	[jump storage="shiryou/08_character.ks"]
+	;[plugin name="temprider" cache="false"]
+	;[jump storage="kaisetsu/14_select.ks"]
 	[jump storage="title.ks"]
 	
 	

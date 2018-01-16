@@ -280,10 +280,10 @@
 		[eval exp="tf.image = 'color/col' + f.current_page_index + '.png'"]
 		
 		; [if]～[endif]
-		; 資料編があるかないかで分岐します。
+		; 資料集があるかないかで分岐します。
 		[if exp="mp.shiryou == 'yes'"]
 			
-			; 資料編があるなら。
+			; 資料集があるなら。
 			
 			; [image]
 			; 選択肢の背景となる色付きの四角形を表示します。
@@ -306,14 +306,14 @@
 			; クリックすることができる透明ボタンを作成します。
 			[clickable color="white" opacity="0"      x="  0" y="& tf.index * 95 +  5 " width="810" height="90" mouseopacity="50" storage="& 'kaisetsu/' + mp.storage" target="%target"]
 			
-			; 資料編についても同様の処理を行います。
+			; 資料集についても同様の処理を行います。
 			[image layer="0" storage="&tf.image"      x="815" y="& tf.index * 95 +  5 " width="145" height="90"]
-			[ptext layer="0" text="資料編"            x="841" y="& tf.index * 95 + 27 " bold="bold"   size="30"]
+			[ptext layer="0" text="資料集"            x="841" y="& tf.index * 95 + 27 " bold="bold"   size="30"]
 			[clickable color="white" opacity="0"      x="815" y="& tf.index * 95 +  5 " width="145" height="90" mouseopacity="50" storage="& 'shiryou/' + mp.storage" target="%target"]
 		
 		[else]
 		
-			; 資料編がないなら資料編は描画しない。
+			; 資料集がないなら資料集は描画しない。
 			;                                                                                  !!!
 			[image layer="0" storage="&tf.image"      x="  0" y="& tf.index * 95 +  5 " width="960" height="90"]
 			[ptext layer="0" text="%text1"            x=" 20" y="& tf.index * 95 +  9 " bold="bold"   size="40"]
