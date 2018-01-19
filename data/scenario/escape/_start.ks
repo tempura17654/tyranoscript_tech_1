@@ -14,6 +14,7 @@
 [layopt layer=message visible=false]
 [layopt layer=1       visible=true ]
 [mtext  layer=1 x=0 y=260 text=制作&emsp;ストライクワークス width=960 align=center size=60 color=0xffffff in_effect=bounce out_sync=true time=1000]
+; textパラメータ中に「&emsp;」とあるが、これは全角スペースの意。この部分が全角スペースに変換される。
 
 [return]
 
@@ -77,7 +78,7 @@ f.items                     {}        それぞれのアイテムの所有数を
 
 [iscript]
 f.select_item = 'empty'
-f.current_scenario  = 'escape/start.ks'
+f.current_scenario  = 'escape/_start.ks'
 f.is_open_chest_top    = false
 f.is_open_chest_bottom = false
 f.develops = {}
@@ -120,9 +121,9 @@ hm  (hide message)          メッセージレイヤー0番を非表示にする
 sm2 (show message 2)        メッセージレイヤー1番を表示する
 hm2 (hide message 2)        メッセージレイヤー1番を非表示にする
 
-sv  (set variable)          変数をセットする
-scm (set clickable map)     クリッカブルマップをセットする
-sb  (set background)        背景をセットする
+sv  (set variable)          変数をセットする(マクロの中身としてはサブルーチンを呼ぶだけ)
+scm (set clickable map)     クリッカブルマップをセットする(同上)
+sb  (set background)        背景をセットする(同上)
 
 use                         アイテムを使用する
 get                         アイテムをゲットする
@@ -132,59 +133,73 @@ ERROR!!                     エラーメッセージを通知する
 */
 
 [macro name=mc]
-[clickable * opacity=0 mouseopacity=40 border=1px:dashed:black color=pink]
+  [clickable * opacity=0 mouseopacity=40 border=1px:dashed:black color=pink]
 [endmacro]
 
 [macro name=sm]
-[cm]
-[layopt layer=message0 visible=true]
+  [cm]
+  [layopt layer=message0 visible=true]
 [endmacro]
 
 [macro name=hm]
-[layopt layer=message0 visible=false]
+  [layopt layer=message0 visible=false]
 [endmacro]
 
 [macro name=sm2]
-[eval cond="$('.layer_free').html() != ''" exp="$('.layer_free').hide(0)"]
-[layopt layer=message1 visible=true]
-[current layer=message1]
+  ; もしフリーレイヤーに何か入っているなら、フリーレイヤーを非表示にせよ。という特殊な操作です。
+  ; いま出ているクリッカブル等の情報をキープしながらメッセージレイヤー1番(アイテム説明が出るレイヤー)にメッセージを出す場合に必要な処理です。
+  [eval cond="$('.layer_free').html() != ''" exp="$('.layer_free').hide(0)"]
+  [layopt layer=message1 visible=true]
+  [current layer=message1]
 [endmacro]
 
 [macro name=hm2]
-[layopt layer=message1 visible=false]
-[current layer=message0]
-[eval cond="$('.layer_free').html() != ''" exp="$('.layer_free').show(0)"]
+  [layopt layer=message1 visible=false]
+  [current layer=message0]
+  ; もしフリーレイヤーに何か入っているなら、フリーレイヤーを表示せよ。という特殊な操作です。
+  [eval cond="$('.layer_free').html() != ''" exp="$('.layer_free').show(0)"]
 [endmacro]
 
+; [sv] 変数をセットする。
 [macro name=sv ]
-[call storage=&f.current_scenario target=*Sub_Set_Variable]
+  ; *Sub_Set_Variableラベルをコールする。storageは変数から参照する。
+  [call storage=&f.current_scenario target=*Sub_Set_Variable]
 [endmacro]
 
+; [sb] 背景をセットする。
 [macro name=sb ]
-[call storage=&f.current_scenario target=*Sub_Set_Background]
+  [call storage=&f.current_scenario target=*Sub_Set_Background]
 [endmacro]
 
+; [scm] クリッカブルマップをセットする。
 [macro name=scm]
-[call storage=&f.current_scenario target=*Sub_Set_Clickable_Map]
+  [call storage=&f.current_scenario target=*Sub_Set_Clickable_Map]
 [endmacro]
 
+; [use] 選択中のアイテムを使う。
 [macro name=use]
-[eval exp="f.select_item = 'empty'"]
-[anim name="&'fix'+mp.item" left="+=1000" time=0]
-[anim name="select"         left="+=1000" time=0]
-[cursor storage=default]
+  ; 変数の更新
+  [eval exp="f.select_item = 'empty'"]
+  ; 画面右に出ているアイテムボタン/強調背景ボタンを画面外に
+  [anim name="&'fix'+mp.item" left="+=1000" time=0]
+  [anim name="select"         left="+=1000" time=0]
+  ; カーソルをデフォルトに
+  [cursor storage=default]
 [endmacro]
 
+; [get] アイテムを入手する。
 [macro name=get]
-[free name="&'layer'+mp.item" layer=0]
-[anim name="&'fix'+mp.item" left="-=1000" time=0]
-[eval exp="f.items[mp.item] = 1"]
+  ; 画面からアイテム画像を解放する。nameにはたとえば「layerbomb」「fixbomb」などが渡される。
+  [free name="&'layer'+mp.item" layer=0]
+  [anim name="&'fix'+mp.item" left="-=1000" time=0]
+  ; 変数の更新
+  [eval exp="f.items[mp.item] = 1"]
 [endmacro]
 
 [macro name=ERROR!!]
-[iscript]
-alert('【エラー】調べられないはずの箇所を調べています。')
-[endscript]
+  [iscript]
+  alert('【エラー】調べられないはずの箇所を調べています。')
+  [endscript]
 [endmacro]
 
 [return]
@@ -205,15 +220,18 @@ alert('【エラー】調べられないはずの箇所を調べています。'
 ; ------------------------------------------------------------------------------
 *Sub_Button
 
+; 前景レイヤー1番にボタン部分の背景を出しておく。
 [image layer=1 x=800 y=0   storage=escape/button_bg.png]
 [image layer=1 x=840 y=640 storage=escape/button_select.png name=select]
 
+; アイテムを使うためのボタンを表示する。すべて固定ボタン。画面外に出しておき、アイテムを入手したら画面内に引っ張ってくる。
 [button fix=true name=fixbox    graphic=escape/item_box.png    x=1840 y=30  storage=escape/_subroutine.ks target=*Sub_Select auto_next=false exp="tf.select = 'box'   ; tf.top =  30"]
 [button fix=true name=fixbomb   graphic=escape/item_bomb.png   x=1840 y=120 storage=escape/_subroutine.ks target=*Sub_Select auto_next=false exp="tf.select = 'bomb'  ; tf.top = 120"]
 [button fix=true name=fixkey    graphic=escape/item_key.png    x=1840 y=210 storage=escape/_subroutine.ks target=*Sub_Select auto_next=false exp="tf.select = 'key'   ; tf.top = 210"]
 [button fix=true name=fixlpaper graphic=escape/item_lpaper.png x=1840 y=300 storage=escape/_subroutine.ks target=*Sub_Select auto_next=false exp="tf.select = 'lpaper'; tf.top = 300"]
 [button fix=true name=fixrpaper graphic=escape/item_rpaper.png x=1840 y=390 storage=escape/_subroutine.ks target=*Sub_Select auto_next=false exp="tf.select = 'rpaper'; tf.top = 390"]
 
+; アイテムの説明を見るためのボタンを表示する。すべて固定ボタン。画面外に出しておき、アイテムを入手したら画面内に引っ張ってくる。
 [button fix=true name=fixbox    graphic=escape/button_question.png x=1915 y=30  storage=escape/_subroutine.ks target=*Sub_Check_Box     auto_next=false]
 [button fix=true name=fixbomb   graphic=escape/button_question.png x=1915 y=120 storage=escape/_subroutine.ks target=*Sub_Check_Bomb    auto_next=false]
 [button fix=true name=fixkey    graphic=escape/button_question.png x=1915 y=210 storage=escape/_subroutine.ks target=*Sub_Check_Key     auto_next=false]
