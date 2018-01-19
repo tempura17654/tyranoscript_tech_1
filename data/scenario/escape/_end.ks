@@ -45,36 +45,36 @@
 *Pos_2
 ; 手榴弾を選択中ではない
 [if exp="f.select_item != 'bomb'"]
-[chara_mod name=master face=happy]
-[sm]
-#master
-ゲームクリアおめでとう。[l][er]
-キミは私が見込んだとおりの頭脳の持ち主だね。[l][er]
-よし、ここから出してあげよう……。[l][er]
-#
-NORMAL END[l][er]
-[hm]
-[jump target=*End]
+  [chara_mod name=master face=happy]
+  [sm]
+  #master
+  ゲームクリアおめでとう。[l][er]
+  キミは私が見込んだとおりの頭脳の持ち主だね。[l][er]
+  よし、ここから出してあげよう……。[l][er]
+  #
+  NORMAL END[l][er]
+  [hm]
+  [jump target=*End]
 ; 手榴弾を選択中
 [else]
-[chara_mod name=master face=happy]
-[sm]
-#master
-ゲームクリアおめ――[l][er]
-#master:ase
-!!????　な、なぜそれを持っているのだ!!!![l][er]
-それはもう使っているはず……!![l][er]
-待て、待ちたまえっ……!!![l][er]
-[use item=bomb]
-#
-手榴弾のピンを抜いた。[l][er]
-[freeimage layer=0 time=1000]
-#master
-うおおおぉぁぁああああ!!!![l][er]
-#
-ANOTHER END[l][er]
-[hm]
-[jump target=*End]
+  [chara_mod name=master face=happy]
+  [sm]
+  #master
+  ゲームクリアおめ――[l][er]
+  #master:ase
+  !!????　な、なぜそれを持っているのだ!!!![l][er]
+  それはもう使っているはず……!![l][er]
+  待て、待ちたまえっ……!!![l][er]
+  [use item=bomb]
+  #
+  手榴弾のピンを抜いた。[l][er]
+  [freeimage layer=0 time=1000]
+  #master
+  うおおおぉぁぁああああ!!!![l][er]
+  #
+  ANOTHER END[l][er]
+  [hm]
+  [jump target=*End]
 [endif]
 [scm][s]
 
@@ -85,5 +85,6 @@ ANOTHER END[l][er]
 [destroy]
 [mask_off time=0]
 [mtext  layer=0 x=0 y=260 text=Thank&ensp;you&ensp;for&ensp;playing! width=960 align=center size=60 color=white in_effect=bounce]
+; textパラメータ中に「&ensp;」とあるが、これは半角スペースの意。この部分が全角スペースに変換される。
 [wait time=500]
 [jump storage=select.ks]

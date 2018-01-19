@@ -41,21 +41,21 @@
 *Pos_1
 ; 発展度０
 [if exp="f.develops[f.current_scenario] == 0"]
-; 箱を選択中ではない
-[if exp="f.select_item != 'box'"]
-[sm]
-なにやら床に窪みがある。[l][er]
-四角いものがフィットしそうだが……。[l][er]
-[hm]
-; 箱を選択中ではない
-[else]
-[use item=box]
-[image layer=0 x=0 y=0 storage=escape/room_box.png name=layerbox]
-[eval exp="f.develops[f.current_scenario] = 1"]
-[endif]
+  ; 箱を選択中ではない
+  [if exp="f.select_item != 'box'"]
+    [sm]
+    なにやら床に窪みがある。[l][er]
+    四角いものがフィットしそうだが……。[l][er]
+    [hm]
+  ; 箱を選択中ではない
+  [else]
+    [use item=box]
+    [image layer=0 x=0 y=0 storage=escape/room_box.png name=layerbox]
+    [eval exp="f.develops[f.current_scenario] = 1"]
+  [endif]
 ; 発展度１～
 [elsif exp="f.develops[f.current_scenario] >= 1"]
-[ERROR!!]
+  [ERROR!!]
 [endif]
 [scm][s]
 
@@ -63,19 +63,19 @@
 *Pos_2
 ; 発展度０
 [if exp="f.develops[f.current_scenario] == 0"]
-[sm]
-天井に手榴弾が吊るしてある。[l][er]
-手さえ届けば取れそうだ。[l][er]
-[hm]
+  [sm]
+  天井に手榴弾が吊るしてある。[l][er]
+  手さえ届けば取れそうだ。[l][er]
+  [hm]
 ; 発展度１
 [elsif exp="f.develops[f.current_scenario] == 1"]
-[get item=bomb]
-[eval exp="f.develops[f.current_scenario] = 2"]
+  [get item=bomb]
+  [eval exp="f.develops[f.current_scenario] = 2"]
 ; 発展度２～
 [elsif exp="f.develops[f.current_scenario] >= 2"]
-[sm]
-天井に手榴弾が吊るしてあったが、いまは何もない。[l][er]
-[hm]
+  [sm]
+  天井に手榴弾が吊るしてあったが、いまは何もない。[l][er]
+  [hm]
 [endif]
 [scm][s]
 
@@ -83,33 +83,33 @@
 *Pos_3
 ; 発展度０
 [if exp="f.develops[f.current_scenario] == 0"]
-[ERROR!!]
+  [ERROR!!]
 ; 発展度１～２
 [elsif exp="f.develops[f.current_scenario] <= 2"]
-; 手榴弾を選択中ではない
-[if exp="f.select_item != 'bomb'"]
-[sm]
-手榴弾を取るために設置した木の箱。[l][er]
-投げたり蹴ったりした程度では壊れそうにない。[l][er]
-[hm]
-; 手榴弾を選択中
-[else]
-[sm]
-手榴弾で木の箱を壊してみよう。[l][er]
-……。[l][er]
-[mask time=500]
-[use item=bomb]
-[free name=layerbox layer=0]
-[image layer=0 x=0 y=0 storage=escape/room_black.png]
-[cursor storage=default]
-[eval exp="f.develops[f.current_scenario] = 3"]
-[mask_off time=500]
-木の箱を壊した。[l][er]
-[hm]
-[endif]
+  ; 手榴弾を選択中ではない
+  [if exp="f.select_item != 'bomb'"]
+    [sm]
+    手榴弾を取るために設置した木の箱。[l][er]
+    投げたり蹴ったりした程度では壊れそうにない。[l][er]
+    [hm]
+  ; 手榴弾を選択中
+  [else]
+    [sm]
+    手榴弾で木の箱を壊してみよう。[l][er]
+    ……。[l][er]
+    [mask time=500]
+    [use item=bomb]
+    [free name=layerbox layer=0]
+    [image layer=0 x=0 y=0 storage=escape/room_black.png]
+    [cursor storage=default]
+    [eval exp="f.develops[f.current_scenario] = 3"]
+    [mask_off time=500]
+    木の箱を壊した。[l][er]
+    [hm]
+   [endif]
 ; 発展度３～
 [elsif exp="f.develops[f.current_scenario] >= 3"]
-[ERROR!!]
+  [ERROR!!]
 [endif]
 [scm][s]
 
@@ -117,21 +117,21 @@
 *Pos_4
 ; 発展度～２
 [if exp="f.develops[f.current_scenario] <= 2"]
-[ERROR!!]
+  [ERROR!!]
 ; 発展度３
 [elsif exp="f.develops[f.current_scenario] == 3"]
-[sm]
-ここで手榴弾を爆発させた。[l][er]
-おや？　何かある……。[l][er]
-小さな鍵を手に入れた。[l][er]
-[get item=key]
-[eval exp="f.develops[f.current_scenario] = 4"]
-[hm]
+  [sm]
+  ここで手榴弾を爆発させた。[l][er]
+  おや？　何かある……。[l][er]
+  小さな鍵を手に入れた。[l][er]
+  [get item=key]
+  [eval exp="f.develops[f.current_scenario] = 4"]
+  [hm]
 ; 発展度４～
 [elsif exp="f.develops[f.current_scenario] >= 4"]
-[sm]
-もう何もない。[l][er]
-[hm]
+  [sm]
+  もう何もない。[l][er]
+  [hm]
 [endif]
 [scm][s]
 

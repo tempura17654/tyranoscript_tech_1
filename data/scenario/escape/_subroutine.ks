@@ -24,14 +24,16 @@
 
 ; 未選択のアイテムをクリックした場合
 [if exp="tf.select != f.select_item"]
-[cursor storage="& 'escape/cursor_' + tf.select + '.png' "]
-[eval exp="f.select_item = tf.select"]
-[anim name=select left=840 top=&tf.top opacity=255 time=0]
+  ; カーソルの変更/変数の更新/ボタン強調用画像(name=select)の移動
+  [cursor storage="& 'escape/cursor_' + tf.select + '.png' "]
+  [eval exp="f.select_item = tf.select"]
+  [anim name=select left=840 top=&tf.top opacity=255 time=0]
 ; 現在選択中のアイテムをふたたびクリックした場合
 [else]
-[cursor storage=default]
-[eval exp="f.select_item = 'empty' "]
-[anim name=select opacity=0 time=0]
+  ; カーソルの変更/変数の更新/ボタン強調用画像(name=select)の移動
+  [cursor storage=default]
+  [eval exp="f.select_item = 'empty' "]
+  [anim name=select opacity=0 time=0]
 [endif]
 
 [return]
