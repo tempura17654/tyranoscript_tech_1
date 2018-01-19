@@ -265,6 +265,7 @@
 		
 		[er]～キャラクターを消す～[l]
 		[er]［chara_hide］…特定のレイヤーにいる特定のキャラクターを退場させる。[l]
+		[r ]［chara_hide_all］…特定のレイヤーにいるすべてのキャラクターを退場させる。[l]
 		
 		
 	[chara_hide name=akane]
@@ -465,4 +466,7 @@
 		[chara_hide name=yamato]
 		#akane:happy
 		[er]以上、資料集でした。[l]
+		
+		
+		[chara_config pos_change_time=600 time=600]
 		[jump storage="select.ks"]

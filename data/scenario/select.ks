@@ -26,7 +26,13 @@
 	[layopt layer="0" visible="true"]
 	[layopt layer="1" visible="true"]
 	[layopt layer="2" visible="true"]
+	
+	; [hidemenubutton] メニューボタンを隠します。
 	[hidemenubutton]
+	
+	; [deffont][resetfont] フォントのデフォルト設定を行います。
+	[deffont size="40" face="ロゴたいぷゴシック,メイリオ,sans-serif" color="0xffffff" edge="0x000000"]
+	[resetfont]
 	
 	; [eval]
 	; 二つのゲーム変数、
@@ -155,7 +161,7 @@
 	
 	[index_reset]
 	[list_item text1="13…クリッカブルマップを出す      " text2="[clickable]             " storage="13_clickable.ks" shiryou="no"]
-	[list_item text1="14…選択肢の見せ方いろいろ！　    " text2="[]                      " storage="14_select.ks"    shiryou="no"]
+	[list_item text1="14…選択肢の見せ方いろいろ！　    " text2="[link][glink][button]   " storage="14_select.ks"    shiryou="no"]
 	[list_item text1="15…プレイヤーに入力してもらう①  " text2="[edit][commit]          " storage="15_input_1.ks"   shiryou="no"]
 	[list_item text1="16…プレイヤーに入力してもらう②  " text2="[button][iscript]       " storage="16_input_2.ks"   shiryou="no"]
 	[list_item text1="17…ウィンドウをカスタマイズする①" text2="[position][button]      " storage="17_window_1.ks"  shiryou="no"]
