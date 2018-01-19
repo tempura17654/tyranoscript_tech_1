@@ -89,6 +89,9 @@
 		[akn/dok]
 		あとは普通のボタンと同様に、効果音を指定してみたり。
 		
+	; [ptext] クレジット表記。音声素材は「Music is VFR」より。
+	[ptext layer="1" x="5" y="0" size="40" edge=black color=white text="効果音素材：Music&ensp;is&ensp;VFR" name="credit"]
+	
 	; [glink] enterse/leavese/clickseパラメータを指定した例。
 	[glink enterse=09_button_1.ogg leavese=09_button_2.ogg clickse=09_button_3.ogg x="370" y="300" text="次に進む" target="*Part5" color="pink"]
 	[s]
@@ -98,6 +101,9 @@
 ;-----------------------------------------------------------
 *Part5
 ;-----------------------------------------------------------
+		
+	; [free] クレジット表記を消す。
+	[free layer=1 name=credit]
 		
 		文字ボタンをアニメーションの対象にとることもできる。
 		

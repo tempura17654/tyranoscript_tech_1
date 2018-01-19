@@ -121,7 +121,10 @@
 		……変わったでしょ？[p]
 		音もつけちゃおう!![p]
 		「マウスを乗せたり離したりクリックしたりしたときに音が鳴るボタン」。[l]
-		
+	
+	; [ptext] クレジット表記。音声素材は「Music is VFR」より。
+	[ptext layer="1" x="5" y="0" size="40" edge=black color=white text="効果音素材：Music&ensp;is&ensp;VFR" name="credit"]
+	
 	; [button] enterse、leavese、clickseパラメータを指定したボタン。
 	[button target=*Part6 enterse=09_button_1.ogg leavese=09_button_2.ogg clickse=09_button_3.ogg enterimg=09_button_A2.png clickimg=09_button_A3.png hint=ボタンオブジェクト～。 x=145 y=195 graphic=09_button_A1.png]
 	[s]
@@ -132,6 +135,7 @@
 *Part6
 ;-----------------------------------------------------------
 		
+	[free layer=1 name=credit]
 	[wait time=300]
 	[cm]
 		
